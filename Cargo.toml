@@ -20,7 +20,7 @@ engine_assets = { path = "crates/engine_assets" }
 game_base = { path = "game_base" }
 
 # Внешние зависимости — версия и фичи задаются здесь, крейты ссылаются через workspace = true
-bevy_ecs = { version = "0.18.1", default-features = false, features = [
+bevy_ecs = { version = "0.20.0", default-features = false, features = [
     "std",
     "multi_threaded",
     "trace",
