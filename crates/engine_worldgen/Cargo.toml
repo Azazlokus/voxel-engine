@@ -1,0 +1,27 @@
+[package]
+name = "engine_worldgen"
+description = "Генератор ландшафта на шуме: рельеф, слои, вода, деревья"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+engine_core.workspace = true
+engine_registry.workspace = true
+engine_world.workspace = true
+bevy_ecs.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+engine_registry.workspace = true
+criterion = { version = "0.7", default-features = false, features = ["cargo_bench_support"] }
+
+[[bench]]
+name = "worldgen"
+harness = false

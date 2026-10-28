@@ -14,6 +14,7 @@ publish = false
 engine_core = { path = "crates/engine_core" }
 engine_registry = { path = "crates/engine_registry" }
 engine_world = { path = "crates/engine_world" }
+engine_worldgen = { path = "crates/engine_worldgen" }
 engine_assets = { path = "crates/engine_assets" }
 game_base = { path = "game_base" }
 
