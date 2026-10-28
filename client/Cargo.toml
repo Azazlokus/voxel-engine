@@ -11,3 +11,7 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+anyhow = "1.0.104"
+engine_core = { version = "0.1.0", path = "../crates/engine_core" }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
