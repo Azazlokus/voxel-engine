@@ -1,0 +1,23 @@
+[package]
+name = "engine_mesh"
+description = "Greedy meshing секций: упакованная вершина, ambient occlusion"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+engine_world.workspace = true
+
+[dev-dependencies]
+engine_registry.workspace = true
+engine_worldgen.workspace = true
+criterion = { version = "0.7", default-features = false, features = ["cargo_bench_support"] }
+
+[[bench]]
+name = "meshing"
+harness = false
