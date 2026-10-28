@@ -1,8 +1,38 @@
-[package]
-name = "voxel-engine"
+[workspace]
+resolver = "3"
+members = ["crates/*", "client"]
+
+[workspace.package]
 version = "0.1.0"
 edition = "2024"
 license = "MIT OR Apache-2.0"
+repository = "https://github.com/Azazlokus/voxel-engine"
 publish = false
 
-[dependencies]
+# Внешние зависимости — версия задаётся здесь, крейты ссылаются через workspace = true
+
+[workspace.lints.rust]
+# unsafe разрешён только с обоснованием // SAFETY: (проверяется в CI),
+# поэтому здесь предупреждение, а не запрет.
+unsafe_code = "warn"
+missing_debug_implementations = "warn"
+
+[workspace.lints.clippy]
+# Горячие циклы: аллокация в цикле — то, что мы ловим в первую очередь.
+needless_collect = "warn"
+redundant_clone = "warn"
+# Паники вне тестов недопустимы (CLAUDE.md).
+unwrap_used = "warn"
+expect_used = "allow"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+panic = "abort"
+
+# Бенчмарки и профилирование: релиз со отладочными символами.
+[profile.profiling]
+inherits = "release"
+debug = true
+panic = "unwind"
