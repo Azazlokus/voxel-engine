@@ -119,9 +119,11 @@ Conventional Commits, тема в нижнем регистре, без точк
 
 ## CI (DevSecOps)
 
-GitHub Actions, два workflow. Красный CI — блокирующий, обходить не нужно: падение чинится, а не глушится.
+GitHub Actions, репозиторий `Azazlokus/voxel-engine`. Красный CI — блокирующий: падение чинится,
+а не глушится. Ветка `main` защищена ruleset'ом (без force-push и удаления, линейная история,
+обязательные проверки); владелец может пушить напрямую в обход, но нормальный путь — PR.
 
-`.github/workflows/ci.yml` — корректность:
+`ci.yml` — корректность:
 - `Conventional Commits` — формат тем коммитов в PR.
 - `Форматирование` — `cargo fmt --all --check`.
 - `Clippy` на Windows и Linux — `--workspace --all-targets --all-features -- -D warnings`.
@@ -129,21 +131,32 @@ GitHub Actions, два workflow. Красный CI — блокирующий, �
 - `Release-сборка` под `x86_64-pc-windows-msvc`.
 - `Проверка unsafe` — каждый `unsafe {` обязан иметь `// SAFETY:` в пределах 6 строк выше.
 
-`.github/workflows/security.yml` — безопасность (плюс ночной прогон по cron, чтобы ловить
-новые CVE в неизменившемся коде):
-- `cargo-deny`: `advisories` (уязвимости, заброшенные крейты), `bans` (дубли версий, wildcard-зависимости),
-  `licenses` (белый список в `deny.toml`), `sources` (только crates.io).
-- `Поиск секретов` — TruffleHog по всей истории.
+`security.yml` — зависимости и секреты (плюс ночной cron: новые CVE появляются и в
+неизменившемся коде):
+- `cargo-deny`: `advisories`, `bans`, `licenses`, `sources` (конфиг — `deny.toml`).
+- `Поиск секретов` — TruffleHog по всей истории, только verified-находки.
 - `Обзор новых зависимостей` — для PR, порог severity `moderate`.
 
-Dependabot (`.github/dependabot.yml`): cargo — еженедельно, actions — ежемесячно, с темами
-коммитов `chore(deps):` / `ci(...)`.
+`codeql.yml` — статический анализ: языки `rust` (public preview) и `actions`, набор запросов
+`security-and-quality`, еженедельно и на каждый PR. Результаты — в Security → Code scanning.
 
-Локально то же самое перед коммитом: `cargo fmt`, `cargo clippy --workspace --all-targets -- -D warnings`,
-`cargo test --workspace`, `cargo deny check` (поставить: `cargo install cargo-deny --locked`).
+`scorecard.yml` — OpenSSF Scorecard: внешняя оценка практик (защита ветки, закреплённые
+зависимости, права токенов), еженедельно.
+
+Правила гигиены CI:
+- У каждого workflow явные минимальные `permissions` (по умолчанию `contents: read`),
+  повышение прав — только в том job'е, которому они нужны.
+- Все GitHub Actions закреплены по **commit SHA** с комментарием-тегом, не по тегу или ветке:
+  тег и ветку можно переписать, SHA — нет. Обновляет Dependabot.
+- Включены Dependabot alerts и security updates, secret scanning с push protection.
+
+Локально перед коммитом: `cargo fmt`, `cargo clippy --workspace --all-targets -- -D warnings`,
+`cargo test --workspace`, `cargo deny check` (`cargo install cargo-deny --locked`).
 
 Новая зависимость — отдельный коммит `build(deps):` с одной строкой обоснования: зачем она
 и почему нельзя без неё. Лицензия вне белого списка `deny.toml` → не берём.
+
+Модель угроз и порядок сообщения об уязвимостях — в `SECURITY.md`.
 
 ## Как работать
 
