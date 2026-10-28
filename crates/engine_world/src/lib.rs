@@ -16,7 +16,7 @@ pub use block::{AIR_ID, BlockId, BlockProperties, BlockRegistry, BlockRegistryEr
 pub use column::{Column, MAX_Y, MIN_Y, SECTIONS_PER_COLUMN};
 pub use coords::{BlockPos, ChunkPos, LocalPos, SECTION_SIZE, SECTION_VOLUME};
 pub use face::Face;
-pub use generator::{EmptyGenerator, WorldGenerator};
+pub use generator::{ActiveGenerator, EmptyGenerator, WorldGenerator};
 pub use plugin::{BlocksResource, ContentSet, WorldPlugin};
 pub use section::Section;
 pub use world::VoxelWorld;
