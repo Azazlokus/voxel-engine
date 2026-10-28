@@ -107,7 +107,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Каждый unsafe должен иметь рядом // SAFETY:
+      - name: "Каждый unsafe должен иметь рядом // SAFETY:"
         run: |
           fail=0
           while IFS=: read -r file line _; do
