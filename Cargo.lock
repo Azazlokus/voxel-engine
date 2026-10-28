@@ -368,6 +368,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "engine_registry"
+version = "0.1.0"
+dependencies = [
+ "thiserror",
+ "tracing",
+]
+
+[[package]]
 name = "equivalent"
 version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"

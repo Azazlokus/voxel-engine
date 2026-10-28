@@ -1,0 +1,15 @@
+[package]
+name = "engine_registry"
+description = "Текстовые ID (namespace:path), реестры контента и заморозка в числовые ID"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+thiserror = "2.0.21"
+tracing = "0.1.44"
