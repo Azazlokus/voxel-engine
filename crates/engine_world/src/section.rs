@@ -171,6 +171,13 @@ impl Section {
     /// Вызывается после массовой записи (генерация колонки), а не на каждый `set`:
     /// пересчёт стоит проход по секции.
     pub fn shrink(&mut self) {
+        // Однородная секция уже минимальна. Без этой проверки сжатие колонки
+        // проходило бы по 4096 вокселей в каждой из секций воздуха и камня,
+        // а их в колонке большинство.
+        if matches!(self.storage, Storage::Uniform(_)) {
+            return;
+        }
+
         let first = self.get_by_index(0);
         if (0..SECTION_VOLUME).all(|index| self.get_by_index(index) == first) {
             self.storage = Storage::Uniform(first);
