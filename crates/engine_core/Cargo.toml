@@ -1,0 +1,15 @@
+[package]
+name = "engine_core"
+description = "Ядро движка: App, Plugin, этапы кадра и тика, ресурсы и события"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+bevy_ecs = { version = "0.18.1", default-features = false, features = ["std", "multi_threaded", "trace", "backtrace"] }
+tracing = "0.1.44"
