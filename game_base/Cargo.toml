@@ -1,0 +1,24 @@
+[package]
+name = "game_base"
+description = "Базовый контент игры: блоки пространства имён base, оформленные плагином"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+engine_core.workspace = true
+engine_assets.workspace = true
+engine_world.workspace = true
+bevy_ecs.workspace = true
+tracing.workspace = true
+
+# Только для генератора текстур (examples/generate_textures.rs): в рантайме
+# game_base картинки не кодирует, поэтому в зависимости движка image не попадает.
+[dev-dependencies]
+engine_registry.workspace = true
+image = { version = "0.25", default-features = false, features = ["png"] }
