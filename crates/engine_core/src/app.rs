@@ -3,7 +3,7 @@
 use crate::{Plugin, Stage, Time, time::FixedTick};
 use bevy_ecs::message::{Message, MessageRegistry, Messages, message_update_system};
 use bevy_ecs::prelude::*;
-use bevy_ecs::schedule::{IntoScheduleConfigs, Schedules};
+use bevy_ecs::schedule::{InternedSystemSet, IntoScheduleConfigs, Schedules};
 use bevy_ecs::system::ScheduleSystem;
 use core::fmt;
 use std::time::{Duration, Instant};
@@ -99,6 +99,21 @@ impl App {
     ) -> &mut Self {
         let mut schedules = self.world.resource_mut::<Schedules>();
         schedules.add_systems(stage, systems);
+        self
+    }
+
+    /// Задать порядок и условия групп систем в этапе.
+    ///
+    /// Нужно, когда порядок важен между плагинами: регистрация контента должна
+    /// отработать до заморозки реестров, но плагины не знают друг о друге и не
+    /// могут сослаться на чужую систему по имени.
+    pub fn configure_sets<M>(
+        &mut self,
+        stage: Stage,
+        sets: impl IntoScheduleConfigs<InternedSystemSet, M>,
+    ) -> &mut Self {
+        let mut schedules = self.world.resource_mut::<Schedules>();
+        schedules.configure_sets(stage, sets);
         self
     }
 
