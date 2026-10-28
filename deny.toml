@@ -24,6 +24,9 @@ allow = [
     "Unlicense",
 ]
 confidence-threshold = 0.9
+# Крейты самого проекта не публикуются в crates.io и своей лицензии не объявляют,
+# пока она не выбрана. Проверка лицензий относится к зависимостям, а не к нам.
+private = { ignore = true }
 
 [bans]
 multiple-versions = "warn"
