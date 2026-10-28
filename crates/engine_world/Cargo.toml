@@ -1,0 +1,17 @@
+[package]
+name = "engine_world"
+description = "Чанки и секции 16³ с палитрой, координаты, мир и трейт генератора"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+engine_registry.workspace = true
+bevy_ecs.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
