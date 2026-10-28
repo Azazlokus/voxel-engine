@@ -11,7 +11,10 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+engine_core.workspace = true
+tracing.workspace = true
+
+# Только в бинарнике: CLAUDE.md разрешает anyhow лишь здесь.
 anyhow = "1.0.104"
-engine_core = { version = "0.1.0", path = "../crates/engine_core" }
-tracing = "0.1.44"
+# tracing сам события не выводит — нужен подписчик; env-filter даёт RUST_LOG.
 tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }

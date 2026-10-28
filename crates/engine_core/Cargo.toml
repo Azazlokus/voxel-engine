@@ -11,5 +11,5 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
-bevy_ecs = { version = "0.18.1", default-features = false, features = ["std", "multi_threaded", "trace", "backtrace"] }
-tracing = "0.1.44"
+bevy_ecs.workspace = true
+tracing.workspace = true

@@ -376,6 +376,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "engine_world"
+version = "0.1.0"
+dependencies = [
+ "bevy_ecs",
+ "engine_registry",
+ "thiserror",
+ "tracing",
+]
+
+[[package]]
 name = "equivalent"
 version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"

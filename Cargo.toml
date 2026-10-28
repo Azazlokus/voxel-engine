@@ -9,7 +9,21 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/Azazlokus/voxel-engine"
 publish = false
 
-# Внешние зависимости — версия задаётся здесь, крейты ссылаются через workspace = true
+[workspace.dependencies]
+# Внутренние крейты
+engine_core = { path = "crates/engine_core" }
+engine_registry = { path = "crates/engine_registry" }
+engine_world = { path = "crates/engine_world" }
+
+# Внешние зависимости — версия и фичи задаются здесь, крейты ссылаются через workspace = true
+bevy_ecs = { version = "0.18.1", default-features = false, features = [
+    "std",
+    "multi_threaded",
+    "trace",
+    "backtrace",
+] }
+thiserror = "2.0.21"
+tracing = "0.1.44"
 
 [workspace.lints.rust]
 # unsafe разрешён только с обоснованием // SAFETY: (проверяется в CI),
