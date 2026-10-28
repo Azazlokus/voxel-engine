@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["crates/*", "client"]
+members = ["crates/*", "game_base", "client"]
 
 [workspace.package]
 version = "0.1.0"
@@ -14,6 +14,8 @@ publish = false
 engine_core = { path = "crates/engine_core" }
 engine_registry = { path = "crates/engine_registry" }
 engine_world = { path = "crates/engine_world" }
+engine_assets = { path = "crates/engine_assets" }
+game_base = { path = "game_base" }
 
 # Внешние зависимости — версия и фичи задаются здесь, крейты ссылаются через workspace = true
 bevy_ecs = { version = "0.18.1", default-features = false, features = [
@@ -22,6 +24,8 @@ bevy_ecs = { version = "0.18.1", default-features = false, features = [
     "trace",
     "backtrace",
 ] }
+serde = { version = "1.0.229", features = ["derive"] }
+ron = "0.12.3"
 thiserror = "2.0.21"
 tracing = "0.1.44"
 

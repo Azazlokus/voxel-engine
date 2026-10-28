@@ -1,0 +1,21 @@
+[package]
+name = "engine_assets"
+description = "Загрузка RON-описаний контента из assets/<namespace>/"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+bevy_ecs.workspace = true
+engine_core.workspace = true
+engine_registry.workspace = true
+engine_world.workspace = true
+serde.workspace = true
+ron.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
