@@ -1,0 +1,8 @@
+(
+    textures: Layered(
+        top: "base:log_top",
+        side: "base:log_side",
+        bottom: "base:log_top",
+    ),
+    hardness: 2.0,
+)

@@ -1,0 +1,4 @@
+(
+    textures: All("base:dirt"),
+    hardness: 0.5,
+)

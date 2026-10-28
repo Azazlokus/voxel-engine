@@ -1,0 +1,4 @@
+(
+    textures: All("base:sand"),
+    hardness: 0.5,
+)

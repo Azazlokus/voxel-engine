@@ -1,0 +1,8 @@
+(
+    textures: Layered(
+        top: "base:grass_top",
+        side: "base:grass_side",
+        bottom: "base:dirt",
+    ),
+    hardness: 0.6,
+)
