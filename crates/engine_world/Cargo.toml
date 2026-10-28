@@ -11,6 +11,7 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+engine_core.workspace = true
 engine_registry.workspace = true
 bevy_ecs.workspace = true
 thiserror.workspace = true

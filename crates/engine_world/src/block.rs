@@ -1,5 +1,6 @@
 //! Блоки: числовой ID, свойства, нужные миру и мешеру, и их реестр.
 
+use bevy_ecs::resource::Resource;
 use engine_registry::{Frozen, Identifier, RawId, Registry, RegistryError};
 use thiserror::Error;
 
@@ -100,7 +101,10 @@ pub enum BlockRegistryError {
 pub const AIR_ID: &str = "base:air";
 
 /// Реестр блоков на этапе наполнения.
-#[derive(Debug)]
+///
+/// Живёт ресурсом ECS между установкой плагинов и заморозкой: плагины контента
+/// дописывают в него свои блоки системами этапа `Startup`.
+#[derive(Debug, Resource)]
 pub struct BlockRegistry {
     inner: Registry<BlockProperties>,
 }
