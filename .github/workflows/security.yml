@@ -44,7 +44,7 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           fetch-depth: 0
-      - uses: trufflesecurity/trufflehog@0301dc36bd6762d2a20a8317ae00375eb5ba90a9 # main @ 2026-10-28
+      - uses: trufflesecurity/trufflehog@16418405d14d7825b5f564ae764436ffc168777e # main @ 2026-10-28
         with:
           path: ./
           base: ''
